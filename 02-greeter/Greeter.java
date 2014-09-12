@@ -7,3 +7,4 @@ public class Greeter {
         System.out.println("Hello world!");
     }
 }
+// note
