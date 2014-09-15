@@ -1,11 +1,11 @@
 " remember to check help for all of these things
 
-syntax on
+" https://github.com/Anthony25/gnome-terminal-colors-solarized
 
+syntax on
 set background=dark
 set t_Co=16
 colorscheme solarized
-
 
 " lol, stolen from the wiki: http://vim.wikia.com/wiki/Example_vimrc
 
