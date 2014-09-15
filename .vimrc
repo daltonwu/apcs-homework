@@ -1,4 +1,12 @@
 " remember to check help for all of these things
+
+syntax on
+
+set background=dark
+set t_Co=16
+colorscheme solarized
+
+
 " lol, stolen from the wiki: http://vim.wikia.com/wiki/Example_vimrc
 
 " Use case insensitive search, except when using capital letters
