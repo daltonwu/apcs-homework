@@ -1,0 +1,13 @@
+public class Driver {
+    public static void main(String[] args) {
+	
+    }
+    
+    public boolean mixStart(String str) {
+	if (str.length() < 3) return false;
+	if (str.endsWith("ix")) return true;
+  else
+      return false;
+}
+
+}
