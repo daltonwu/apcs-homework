@@ -3,7 +3,7 @@ public class Driver {
         // test everything
         StringStuff foo = new StringStuff();
 
-        System.out.println("nonstart\n");
+        System.out.println("// nonstart\n");
         System.out.print("Expecting \"ellohere\": ");
         System.out.println(foo.nonStart("Hello", "There"));
         System.out.print("Expecting \"avaode\": ");
@@ -13,7 +13,7 @@ public class Driver {
         System.out.print("\n\n");
         
         
-        System.out.println("makeAbba\n");
+        System.out.println("// makeAbba\n");
         System.out.print("Expecting \"HiByeByeHi\": ");
         System.out.println(foo.makeAbba("Hi", "Bye"));
         System.out.print("Expecting \"YoAliceAliceYo\": ");
@@ -22,13 +22,13 @@ public class Driver {
         System.out.println(foo.makeAbba("What", "Up"));
         System.out.print("\n\n");
         
-        System.out.println("diff21\n");
+        System.out.println("// diff21\n");
         System.out.print("Expecting 2: ");
         System.out.println(foo.diff21(19));
         System.out.print("Expecting 11: ");
         System.out.println(foo.diff21(10));
         System.out.print("Expecting 0: ");
-        System.out.println(foo.diff21(10));
+        System.out.println(foo.diff21(21));
 
 
         
