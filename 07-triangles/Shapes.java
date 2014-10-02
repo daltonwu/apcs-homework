@@ -49,9 +49,9 @@ public class Shapes {
     
     public String tri3(int h) {
 	String s = "";
-	for(int i=1; i<=h; i++) {
-	    for(int g=1; g<=i; g++) {
-		if(Math.abs(2*i+-g) < 2*i) {
+	for(int i=0; i<h; i++) {
+	    for(int g=0; g<2*i+1; g++) {
+		if(Math.abs(h/2-g) < i) {
 		    s+="*";
 		}
 		else {
