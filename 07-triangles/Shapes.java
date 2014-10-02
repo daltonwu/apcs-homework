@@ -33,16 +33,23 @@ public class Shapes {
 
     public String tri2(int h) {
         String s = "";
-        int i=0;
-        while(i<h) {
-            int g=i;
-            while(g<h) {
-                s+="*";
-                g++;
+        for(int i=1; i<=h; i++) {
+            for(int g=1; g<=h; g++) {
+                if(g>h-i) {
+		    s+="*";
+		}
+		else {
+		    s+=" ";
+		}
             }
             s+="\n";
-            i++;
         }
         return s;
     }
+    /*
+    public String tri3(int h) {
+	String s = "";
+	for(int i=0; i<h; i++) {
+	    for(int g=0; g<i; g+=2) {
+    */
 }
