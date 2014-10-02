@@ -11,5 +11,8 @@ public class Driver {
 
         System.out.println(s.tri2(3));
         System.out.println(s.tri2(5));
+	
+	System.out.println(s.tri3(4));
+	System.out.println(s.tri3(6));
     }
 }

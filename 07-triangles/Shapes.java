@@ -46,10 +46,20 @@ public class Shapes {
         }
         return s;
     }
-    /*
+    
     public String tri3(int h) {
 	String s = "";
-	for(int i=0; i<h; i++) {
-	    for(int g=0; g<i; g+=2) {
-    */
+	for(int i=1; i<=h; i++) {
+	    for(int g=1; g<=i; g++) {
+		if(Math.abs(2*i+-g) < 2*i) {
+		    s+="*";
+		}
+		else {
+		    s+=" ";
+		}
+	    }
+	    s+="\n";
+	}
+	return s;
+    }
 }
