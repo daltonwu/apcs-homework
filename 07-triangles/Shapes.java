@@ -2,35 +2,26 @@
 public class Shapes {
     public String box(int r, int c) {
 	String s = "";
-
-	while (r>0){
-	    int cc = 0;
-	    while (cc < c){
+	for(int i=0; i<r; i++) {
+	    for(int g=0; g<c; g++) {
 		s += "*";
-		cc += 1;
 	    }
-	    s = s + "\n";
-	    r--;
+	    s+="\n";
 	}
-
 	return s;
     }
-
+    
     public String tri1(int h) {
         String s = "";
-        int i=0;
-        while(i<h) {
-            int g=0;
-            while(g<=i) {
+        for(int i=0; i<h; i++) {
+            for(int g=0; g<=i; g++) {
                 s+="*";
-                g++;
             }
             s+="\n";
-            i++;
         }
         return s;
     }
-
+    
     public String tri2(int h) {
         String s = "";
         for(int i=1; i<=h; i++) {
