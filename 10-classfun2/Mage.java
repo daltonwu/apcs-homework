@@ -4,5 +4,15 @@ public class Mage extends Basechar{
     public int getManna(){
 	return manna;
     }
-    
+
+    public Mage(String name) {
+        this.setName(name);
+    }
+    public Mage() {
+        this.setName("LOLOL");
+    }
+    public Mage(String name, int manna) {
+        this.setName(name);
+        this.manna = manna;
+    } 
 }

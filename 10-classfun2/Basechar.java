@@ -9,7 +9,8 @@ public class Basechar {
     
     public void attack(Basechar other){
 	//System.out.println(this.getName()+" is attacking "+other.getName());
-	System.out.println(this+" is attacking "+other);
+	//System.out.println(this+" is attacking "+other);
+        System.out.println(this);
 
     }
     
@@ -24,6 +25,11 @@ public class Basechar {
     public int getHealth() {
 	return this.health;
     }
-
-    
+    /*
+    public Basechar(String name) {
+        this.name = name;
+    }
+    public Basechar() {
+        this.name = "yousuck";
+    }*/
 }
