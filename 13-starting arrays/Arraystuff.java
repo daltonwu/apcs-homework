@@ -1,0 +1,22 @@
+public class Arraystuff {
+  public int[] frontPiece(int[] nums) {
+    if(nums.length<2) return nums;
+    int[] x = {nums[0],nums[1]};
+    return x;
+  }
+  
+  public int sum13(int[] nums) {
+    int sum = 0;
+    for(int i=0; i<nums.length; i++) {
+      if(nums[i]==13) {
+        if(i<nums.length-1 && nums[i+1]!=13) {
+          sum -= nums[i+1];
+        }
+      }
+      else {
+          sum += nums[i];
+      }
+    }
+    return sum;
+  }
+}
