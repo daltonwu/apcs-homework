@@ -1,6 +1,0 @@
-public class Arraystuff {
-    public int find(int[] arr, n) {
-	/** @return index of first occurrence of n in the array or -1 if not found
-	 *  @param int[], number n
-	 */
-	for(int i=0;

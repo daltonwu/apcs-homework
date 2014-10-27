@@ -1,11 +1,11 @@
 public class Arraystuff {
-    int[] arr;
+    private int[] arr;
     
     public Arraystuff(int[] arr) {
 	this.arr = arr;
     }
     
-    public int find(n) {
+    public int find(int n) {
 	/** @return index of first occurrence of n in the array or -1 if not found
 	 *  @param int[], number n
 	 */
@@ -17,9 +17,13 @@ public class Arraystuff {
     public int maxVal() {
 	/** @return largest value in the array
 	 */
-	if(arr.length == 0) return n
-	for(foo : arr) {
+	if(arr.length == 0) {
+	    return (int)Double.NaN;
+	}
+	int max = arr[0];
+	for(int foo : arr) {
 	    if (foo > max) max = foo;
 	}
-	if
+	return max;
     }
+}
