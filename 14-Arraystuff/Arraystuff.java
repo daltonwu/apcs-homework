@@ -1,15 +1,20 @@
 public class Arraystuff {
     public int find(int[] arr,  n) {
-	/** @return index of first occurrence of n in the array or -1 if not found
-	 *  @param int[], number n
+	/** 
+	 * @param  arr array to be searched
+	 * @param  n   number to be found
+	 * @return     index of first occurrence of n in the array or -1 if not found
 	 */
 	for(int aye=0; aye<arr.length; aye++) {
 	    if(arr[aye]==n) return aye;
 	}
 	return -1;
     }
+    
     public int maxVal(int[] arr) {
-	/** @return largest value in the array
+	/**
+	 * @param  arr array to be searched
+	 * @return largest value in the array
 	 */
 	if(arr.length == 0) {
 	    return (int)Double.NaN;
@@ -20,6 +25,7 @@ public class Arraystuff {
 	}
 	return max;
     }
+    
     public int freq(int[] arr, int n) {
 	int count = 0;
 	for(int i : arr) {
@@ -27,6 +33,7 @@ public class Arraystuff {
 	}
 	return count;
     }
+    
     public int sum67(int[] nums) {
 	int sum = 0;
 	boolean between67 = false;
@@ -47,6 +54,7 @@ public class Arraystuff {
 	}
 	return sum;
     }
+    
     public boolean more14(int[] nums) {
 	int num1 = 0;
 	int num4 = 0;
@@ -56,6 +64,7 @@ public class Arraystuff {
 	}
 	return num1>num4;
     }
+    
     public int[] tenRun(int[] nums) {
 	int n=-1;
 	for(int i=0; i<nums.length; i++) {
@@ -64,12 +73,14 @@ public class Arraystuff {
 	}
 	return nums;
     }
+    
     public boolean tripleUp(int[] nums) {
 	for(int i=0; i<nums.length-2; i++) {
 	    if(nums[i+2]==nums[i+1]+1 && nums[i+1]==nums[i]+1) return true;
 	}
 	return false;
     }
+    
     public boolean canBalance(int[] nums) {
 	if (nums.length==0) return true;
 	for (int i=0; i<nums.length; i++) {
