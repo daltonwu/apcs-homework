@@ -115,4 +115,38 @@ public class Arraystuff {
 	}
 	return sequence;
     }
+
+    public int maxMirror(int[] nums) {
+	// increment sections size
+	for(int len=nums.length; len>0; len--) {
+	    // increment section1 starting index
+	    for(int s1=0; s1+len<=nums.length; s1++) {
+		// intialize section1 for comparison
+		int[] section1 = new int[len];
+		for(int foo=0; foo<len; foo++) {
+		    section1[foo] = nums[s1+foo];
+		}
+		int[] section2 = new int[len];
+		// increment section2 starting index
+		for(int s2=0; s2+len<=nums.length; s2++) {
+		    // initialize section2 for comparison
+		    for(int foo=0; foo<len; foo++) {
+			section2[foo] = nums[s2+len-1-foo];
+		    }
+		    // comparison
+		    if(arraysEqual(section1, section2)) return len;
+		}
+	    }
+	}
+	return 0;
+    }
+
+    private boolean arraysEqual(int[] section1, int[] section2) {
+	/* checks for equality between
+	   two int[] of equal length */
+	for(int i=0; i<section1.length; i++) {
+	    if(section1[i] != section2[i]) return false;
+	}
+	return true;
+    }
 }
