@@ -10,6 +10,25 @@ public class Arraystuff {
 	}
 	return -1;
     }
+
+    public int mode(int[] arr) {
+	/**
+	 * @param  int[] arr
+	 * @return a mode (one of them)
+	 */
+	int[] counts = new int[arr.length];
+	for (int a : counts) a = 0;
+	for (int foo : arr) {
+	    if (!in(arr, 
+	}
+    }
+
+	public int in(int[] arr, int n) {
+	    for (int foo : arr) {
+		if (n==foo) return true;
+	    }
+	    return false;
+	}
     
     public int maxVal(int[] arr) {
 	/**
