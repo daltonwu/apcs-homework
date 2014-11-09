@@ -3,72 +3,86 @@ public class SArray {
     int   last;
 
     public SArray() {
-    }
-    public SArray() {
-        // set up the initial instance variables
+        // Sets up the initial instance variables.
 	data = new int[10];
 	last = 0;
     }
 
     public boolean add(int i) {
-        // adds an item to the end of the list, grow if needed
-        // returns true
+        // Adds an item to the end of the list, grows if needed.
+        // Returns true.
 	if (last == data.length-1) {
 	    this.grow(5);
 	}
-	else {
-	    last++;
-	    data[last] = i;
-	}
+	last++;
+	data[last] = i;
 	return true;
     }
 
     public void add(int index, int i) {
-        // adds item i  at index, shifting everything down as needed.
-        // also grows as needed 
+        // Adds item i at given index, shifting everything down as needed.
+        // Grows as needed.
+	if (last == data.length-1) {
+	    this.grow(5);
+	}
+	int prevVal = i;
+	for (int foo = index; foo < last+1; foo++) {
+	    int temp = data[foo];
+	    data[foo] = prevVal;
+	    prevVal = temp;
+	}
     }
 
     public int size() {
-        // returns the number of items in the list (not the array size)
+        // Returns the number of items in the list (not the array size).
 	return last;
     }
 
     public int get(int index) {
-        // returns the item at location index of the list
+        // Returns the item at given index of the list.
 	return data[index];
     }
 
     public int set(int index, int i) {
-        // sets the item at location index to value i
-        // returns the old value
+        // Sets the item at given index to given value.
+        // Returns the old value.
+	int toReturn = data[index];
+	data[index] = i;
+	return toReturn;
     }
 
     public int remove(int index) {
-        // removes the item at index i
-        // returns the old value
+        // Removes the item at given index. [See this.add().]
+        // Returns the old value.
+	int toReturn = data[index];
+	for (int foo = index; foo < last; foo++) {
+	    data[foo] = data[foo+1];
+	}
+	data[last] = 0; // WIPED
+	last--;
+	return toReturn;
     }
 
     public void grow(int bigger) {
+	// modifies empty space at the end of the array
+	
 	int[] temp  = new int[data.length];
-	for (int i = 0; i < data.length; i++) {
-	    temp[i] = data[i];
-	}
+	System.arraycopy(data, 0, temp, 0, data.length);
 	data = new int[temp.length + bigger];
-	for (int i = 0; i < temp.length; i++) {
-	    data[i] = temp[i];
-	}
+	System.arraycopy(temp, 0, data, 0, data.length);
     }
+    /*
     public void shift(int start, int phase) {
 	// shift everything <phase> places,
 	// starting at index <start>
 	if (phase == 0 || start < 1) System.out.println("wth are you doing??");
 	if (phase < 0) {
-	    for (int i=0; i < data.length; i++) {
-		int temp = data[i];
-		
-	    }
+	    int[] temp = new int[data.length];
+	    System.arraycopy(data, 0, temp, 0, data.length);
+	    data = new int[
 	}
 	else {
 	}
     }
+    */
 }
