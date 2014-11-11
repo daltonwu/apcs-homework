@@ -40,12 +40,38 @@ public class SArray {
 
     public int get(int index) {
         // Returns the item at given index of the list.
-	return data[index];
+        try {
+            if (index > last) {
+                this.classyErrorL()
+            }
+            return data[index];
+        }
+        catch (ArrayIndexOutOfBounds a) {
+            System.out.println("Given index not within the SArray! " + a);
+        }
+        catch (IndexOutOfBounds i) {
+            System.out.println("??? " + i);
+        }
+
+        return data[index];
     }
 
     public int set(int index, int i) {
         // Sets the item at given index to given value.
         // Returns the old value.
+        try {
+            if (index > last) {
+                this.classyErrorL();
+            }
+            return data[index];
+        }
+        catch (ArrayIndexOutOfBounds a) {
+            System.out.println("Given index not within the SArray! " + a);
+        }
+        catch (IndexOutOfBounds i) {
+            System.out.println("??? " + i);
+        }
+
 	int toReturn = data[index];
 	data[index] = i;
 	return toReturn;
@@ -54,7 +80,20 @@ public class SArray {
     public int remove(int index) {
         // Removes the item at given index. [See this.add().]
         // Returns the old value.
-	int toReturn = data[index];
+	try {
+            if (index > last) {
+                this.classyErrorL();
+            }
+            return data[index];
+        }
+        catch (ArrayIndexOutOfBounds a) {
+            System.out.println("Given index not within the SArray! " + a);
+        }
+        catch (IndexOutOfBounds i) {
+            System.out.println("??? " + i);
+        }
+        
+        int toReturn = data[index];
 	for (int foo = index; foo < last; foo++) {
 	    data[foo] = data[foo+1];
 	}
@@ -85,4 +124,7 @@ public class SArray {
 	}
     }
     */
+    public void classyErrorL() {
+        System.out.println("Error! Given index does not point to initialized portion of SArray!!!1!!!111!");
+    }
 }
