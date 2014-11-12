@@ -11,7 +11,7 @@ public class Driver {
 	ali = new ArrayList<Integer>(numRandInts);
 	randomize(numRandInts);
 	System.out.println(ali.toString());
-	ali = removeDupl(ali);
+	ali = removeAdjDupl(ali);
 	System.out.println(ali.toString());
     }
     public static void randomize(int numRandInts) {
@@ -20,11 +20,13 @@ public class Driver {
 	}
     }
 
-    public static ArrayList<Integer> removeDupl(ArrayList<Integer> ali) {
+    public static ArrayList<Integer> removeAdjDupl(ArrayList<Integer> ali) {
 	ArrayList<Integer> foo = new ArrayList<Integer>(ali.size());
 	for(int i=0; i<ali.size(); i++) {
-	    if( !foo.contains(ali.get(i)) ) {
-		foo.add(ali.get(i));
+	    if(i < ali.size()-1) {
+		if( !ali.get(i+1).equals(ali.get(i)) ) {
+		    foo.add(ali.get(i));
+		}
 	    }
 	}
 	return foo;
