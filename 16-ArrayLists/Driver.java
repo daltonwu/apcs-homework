@@ -5,13 +5,14 @@ public class Driver {
     private static ArrayList<Integer> ali;
     private static Random rand = new Random();
     private static int numRandInts = 20;
-    private static int maxRandInt = 5;
+    private static int maxRandInt = 2;
     
     public static void main(String[] args) {
 	ali = new ArrayList<Integer>(numRandInts);
 	randomize(numRandInts);
 	System.out.println(ali.toString());
 	ali = removeAdjDupl(ali);
+
 	System.out.println(ali.toString());
     }
     public static void randomize(int numRandInts) {
@@ -30,5 +31,15 @@ public class Driver {
 	    }
 	}
 	return foo;
+    }
+
+    public static void removeAdjDupl_2() {
+	int i = 0;
+	while (i < ali.size()) {
+	    if(ali.get(i+1).equals(ali.get(i))) {
+		ali.remove(i);
+	    }
+	    else i++;
+	}
     }
 }
