@@ -5,7 +5,7 @@ public class Driver {
     private static Random rand = new Random();
 
     // the number of ints to put in ArrayList or int[]
-    private static int size = 20;
+    private static int size = (int)Math.pow(2, 4);
 
     // the goods
     private static ArrayList<Integer> alpha  = new ArrayList<Integer>(size);
@@ -52,8 +52,9 @@ public class Driver {
         alpha.clear();
         while (foo.size() > 0) {
             int i = rand.nextInt(foo.size());
-            alpha.add(foo.get(i));
-            foo.remove(i);
+            //alpha.add(foo.get(i));
+            //foo.remove(i);
+            alpha.add(foo.remove(i));
         }
         
         // just 'cause
