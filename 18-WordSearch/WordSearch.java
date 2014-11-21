@@ -26,10 +26,10 @@ public class WordSearch {
     
     public void addWordH(String w, int row, int col){
 	int c = col;
-	for (int i=0; i < w.length();i++){
-	    board[row][c] = w.charAt(i);
-	    c++;
-	}
+		for (int i=0; i < w.length();i++) {
+			board[row][c] = w.charAt(i);
+			c++;
+		}
     }
     
     public void addWordHorizontally(String w, int row, int col, boolean addForwards) {
@@ -89,16 +89,34 @@ public class WordSearch {
             }
         } catch (IndexOutOfBoundsException i) {}
     }
+    
+    public void addWordDiagonally(String w, int row, int col, int direction) {
+        // 0 = NE           N
+        // 1 = SE           ^
+        // 2 = SW      W  <---> E
+        // 3 = NW         L v
+        //                  S
+        if (direction == 0) {
+            
+        }
+        else if (direction == 1) {
+        }
+        else if (direction == 2) {
+        }
+        else if (direction == 3) {
+        }
+        else System.out.println("YOU SCREWED UP YOUR CARDINAL DIRECTIONS / COUNTING");
+    }
 		
     public static void main(String[] args) {
-	WordSearch w = new WordSearch(42, 42);
-	System.out.println(w);
-	//w.addWordH("hello",3,15); // should work
-	//w.addWordH("look",3,14); // test illegal overlap
-	//w.addWordH("look",3,18); // test legal overlap
-	//w.addWordH("look",-3,20); // test illegal row
-	//w.addWordH("look",3,55); // test illegal col
-	// etc
+        WordSearch w = new WordSearch(42, 42);
+        System.out.println(w);
+        //w.addWordH("hello",3,15); // should work
+        //w.addWordH("look",3,14); // test illegal overlap
+        //w.addWordH("look",3,18); // test legal overlap
+        //w.addWordH("look",-3,20); // test illegal row
+        //w.addWordH("look",3,55); // test illegal col
+        // etc
         //w.addWordHorizontally("omg", 4, 0, true);
         //w.addWordHorizontally("omg", 4, 2, false);
         //w.addWordHorizontally("abcdefgh", 4, 15, true);
@@ -108,13 +126,13 @@ public class WordSearch {
         //w.addWordVertically("Supercalifragilisticexpialidocious", 2, 3, true);
         //w.addWordVertically("abc", 2, 3, true);
         //w.addWordVertically("abc", 2, 3, false);
- 	w.addWordVertically("hello", 2, 3, true);
+        w.addWordVertically("hello", 2, 3, true);
         w.addWordVertically("lombardment", 5, 3, true);
         w.addWordVertically("low", 4, 2, false);
         w.addWordVertically("owch", 3, 2, false);
         //w.addWordVertically("ab", 0, 0, true);
         w.addWordVertically("abc", 1, 0, false);
         System.out.println(w);
-       
+            
     }
 }
