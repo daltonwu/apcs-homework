@@ -97,7 +97,9 @@ public class WordSearch {
         // 3 = NW         L v
         //                  S
         if (direction == 0) {
-            
+            int r = row;
+            int c = col;
+            for (int i=w.length()
         }
         else if (direction == 1) {
         }
