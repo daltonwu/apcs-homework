@@ -3,8 +3,8 @@ public class WordSearch {
 
     public WordSearch(int r, int c){
 	board = new char[r][c];
-	for (int i = 0; i < board.length; i++) {
-	    for (int j = 0; j < board[i].length; j++) {
+	for (int i=0; i<board.length; i++) {
+	    for (int j=0; j<board[i].length; j++) {
 		board[i][j]='.';
 	    }
 	}
@@ -13,17 +13,17 @@ public class WordSearch {
 	this(20,40);
     }
  
-    public String toString(){
+    public String toString() {
 	String s = "";
-	for (int i = 0; i < board.length; i++) {
-	    for (int j = 0; j < board[i].length; j++) {
-		s = s + board[i][j];
+	for (int i=0; i<board.length; i++) {
+	    for (int j=0; j<board[i].length; j++) {
+		s += board[i][j];
 	    }
-	    s = s + "\n";
+	    s += "\n";
 	}
 	return s;
     }
-    
+    /*
     public void addWordH(String w, int row, int col){
 	int c = col;
 		for (int i=0; i < w.length();i++) {
@@ -31,13 +31,13 @@ public class WordSearch {
 			c++;
 		}
     }
-    
-    public void addWordHorizontally(String w, int row, int col, boolean addForwards) {
+    */
+    public boolean addWordHorizontally(String w, int row, int col, boolean addForwards) {
         try {
             if (addForwards) {
                 int c = col;
                 for (int i=0; i<w.length(); i++) {
-                    if (board[row][c]!='.' && board[row][c]!=w.charAt(i)) return;
+                    if (board[row][c]!='.' && board[row][c]!=w.charAt(i)) return false;
                     c++;
                 }
                 c = col;
@@ -49,7 +49,7 @@ public class WordSearch {
             else {
                 int c = col;
                 for (int i=w.length()-1; i>=0; i--) {
-                    if (board[row][c]!='.' && board[row][c]!=w.charAt(i)) return;
+                    if (board[row][c]!='.' && board[row][c]!=w.charAt(i)) return false;
                     c++;
                 }
                 c = col;
@@ -58,15 +58,16 @@ public class WordSearch {
                     c++;
                 }
             }
-        } catch (IndexOutOfBoundsException i) {}
+            return true;
+        } catch (IndexOutOfBoundsException i) {return false;}
     }
 
-    public void addWordVertically(String w, int row, int col, boolean addDownwards) {
+    public boolean addWordVertically(String w, int row, int col, boolean addDownwards) {
         try {
             if (addDownwards) {
                 int r = row;
                 for (int i=0; i<w.length(); i++) {
-                    if (board[r][col]!='.' && board[r][col]!=w.charAt(i)) return;
+                    if (board[r][col]!='.' && board[r][col]!=w.charAt(i)) return false;
                     r++;
                 }
                 r = row;
@@ -78,7 +79,7 @@ public class WordSearch {
             else {
                 int r = row;
                 for (int i=w.length()-1; i>=0; i--) {
-                    if (board[r][col]!='.' && board[r][col]!=w.charAt(i)) return;
+                    if (board[r][col]!='.' && board[r][col]!=w.charAt(i)) return false;
                     r++;
                 }
                 r = row;
@@ -87,27 +88,45 @@ public class WordSearch {
                     r++;
                 }
             }
-        } catch (IndexOutOfBoundsException i) {}
+            return true;
+        } catch (IndexOutOfBoundsException i) {return false;}
     }
     
-    public void addWordDiagonally(String w, int row, int col, int direction) {
+    public boolean addWordDiagonally(String w, int row, int col, String direction) {
         // 0 = NE           N
         // 1 = SE           ^
         // 2 = SW      W  <---> E
         // 3 = NW         L v
         //                  S
-        if (direction == 0) {
-            int r = row;
-            int c = col;
-            for (int i=w.length()
-        }
-        else if (direction == 1) {
-        }
-        else if (direction == 2) {
-        }
-        else if (direction == 3) {
-        }
-        else System.out.println("YOU SCREWED UP YOUR CARDINAL DIRECTIONS / COUNTING");
+        try {
+            if (direction.length() == 2) {
+                int r = row;
+                int c = col;
+                for (int i=w.length(); i>=0; i++) {
+                    if (board[r][c]!='.' && board[r][c]!=w.charAt(i)) return false;
+                    
+                    if (direction.toLowerCase().endsWith("s")) r++;
+                    else r--;
+                    if (direction.toLowerCase().endsWith("e")) c++;
+                    else c--;
+                }
+                r = row;
+                c = col;
+                for (int i=w.length(); i>=0; i++) {
+                    board[r][c] = w.charAt(i);
+                    
+                    if (direction.toLowerCase().endsWith("s")) r++;
+                    else r--;
+                    if (direction.toLowerCase().endsWith("e")) c++;
+                    else c--;
+                }
+                return true;
+            }
+            else {
+                System.out.println("YOU SCREWED UP YOUR DIRECTION");
+                return false;
+            }
+        } catch (IndexOutOfBoundsException i) {return false;}
     }
 		
     public static void main(String[] args) {
@@ -128,12 +147,19 @@ public class WordSearch {
         //w.addWordVertically("Supercalifragilisticexpialidocious", 2, 3, true);
         //w.addWordVertically("abc", 2, 3, true);
         //w.addWordVertically("abc", 2, 3, false);
-        w.addWordVertically("hello", 2, 3, true);
-        w.addWordVertically("lombardment", 5, 3, true);
-        w.addWordVertically("low", 4, 2, false);
-        w.addWordVertically("owch", 3, 2, false);
+        //w.addWordVertically("hello", 2, 3, true);
+        //w.addWordVertically("lombardment", 5, 3, true);
+        //w.addWordVertically("low", 4, 2, false);
+        //w.addWordVertically("owch", 3, 2, false);
         //w.addWordVertically("ab", 0, 0, true);
-        w.addWordVertically("abc", 1, 0, false);
+        //w.addWordVertically("abc", 1, 0, false);
+        System.out.println(w.addWordDiagonally("abc", 1, 2, "ne"));
+        //w.addWordDiagonally("abc", 1, 2, "NW");
+        //w.addWordDiagonally("abc", 1, 2, "nw");
+        //w.addWordDiagonally("abc", 1, 2, "nw");
+        //w.addWordDiagonally("abc", 1, 2, "nw");
+
+
         System.out.println(w);
             
     }
