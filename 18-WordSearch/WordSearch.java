@@ -1,6 +1,8 @@
+import java.util.Random;
+
 public class WordSearch {
     private char[][] board;
-
+    private Random rand = new Random();
     public WordSearch(int r, int c){
 	board = new char[r][c];
 	for (int i=0; i<board.length; i++) {
@@ -128,9 +130,53 @@ public class WordSearch {
             }
         } catch (IndexOutOfBoundsException i) {return false;}
     }
-		
+    
+    public boolean addWord(String w) {
+        /*/**
+         * <p>Adds word at a random location, with random orientation.
+         * This implementation tries multiple times until success
+         * because it's a try-hard.</p>
+         * @param String w   
+         */
+        int triesLimit = 40; // sometimes, it's impossible to get what you want
+        w = w.toLowerCase();
+        while (triesLimit > 0) {
+            int caser = rand.nextInt(8);
+            int r = rand.nextInt(board.length);
+            int c = rand.nextInt(board[0].length);
+            switch (caser) {
+                // 0 = h, f
+                // 1 = h, b
+                // 2 = v, d
+                // 3 = v, u
+                // 4 = NE
+                // 5 = SE
+                // 6 = SW
+                // 7 = NW
+                case 0:  if(addWordHorizontally(w, r, c, true)) return true;
+                         break;
+                case 1:  if(addWordHorizontally(w, r, c, false)) return true;
+                         break;
+                case 2:  if(addWordVertically(w, r, c, true)) return true;
+                         break;
+                case 3:  if(addWordVertically(w, r, c, false)) return true;
+                         break;
+                case 4:  if(addWordDiagonally(w, r, c, "NE")) return true;
+                         break;
+                case 5:  if(addWordDiagonally(w, r, c, "SE")) return true;
+                         break;
+                case 6:  if(addWordDiagonally(w, r, c, "SW")) return true;
+                         break;
+                case 7:  if(addWordDiagonally(w, r, c, "NW")) return true;
+                         break;
+            }
+            triesLimit--;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        WordSearch w = new WordSearch(42, 42);
+        WordSearch w = new WordSearch(21, 42);
         System.out.println(w);
         //w.addWordH("hello",3,15); // should work
         //w.addWordH("look",3,14); // test illegal overlap
@@ -153,13 +199,32 @@ public class WordSearch {
         //w.addWordVertically("owch", 3, 2, false);
         //w.addWordVertically("ab", 0, 0, true);
         //w.addWordVertically("abc", 1, 0, false);
-        System.out.println(w.addWordDiagonally("abc", 1, 2, "ne"));
+        //System.out.println(w.addWordDiagonally("abc", 1, 2, "ne"));
         //w.addWordDiagonally("abc", 1, 2, "NW");
         //w.addWordDiagonally("abc", 1, 2, "nw");
         //w.addWordDiagonally("abc", 1, 2, "nw");
         //w.addWordDiagonally("abc", 1, 2, "nw");
-
-
+/*        w.addWord("cactus");
+        w.addWord("chicken");
+        w.addWord("Betelgeuse");
+        w.addWord("LaTeX");
+        w.addWord("Hello, world!");*/
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "Nw");
+        w.addWordDiagonally("cactus", 1, 2, "sE");
+        w.addWordDiagonally("cactus", 1, 2, "sw");/*
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");
+        w.addWordDiagonally("cactus", 1, 2, "NE");*/
+  
         System.out.println(w);
             
     }
