@@ -1,44 +1,48 @@
-public class OrderedSArray<E> {
+import java.lang.reflect.Array;
+
+public class SuperArray<E> {
     private E[] data;
     private int last;
     private int growSize;
     
-    public OrderedSArray(Class<E> c, int size, int growSize) {
+    public SuperArray(Class<E> e, int size, int growSize) {
         // Sets up the initial instance variables.
         @SuppressWarnings("unchecked")
-        data = (E[]) Array.newInstance(c, size);
+        E[] data = (E[]) Array.newInstance(e, size);
         this.growSize = growSize;
         last = 0;
     }
-    public OrderedSArray(Class<E> c) {
+    public SuperArray(Class<E> e) {
         // Special case for the lazy person.
-	this(c, 10, 10);
+	this(e, 10, 10);
     }
 
-    public boolean add(int i) {
+    public boolean add(E item) {
         // Adds an item to the end of the list, grows if needed.
         // Returns true.
 	if (last == data.length-1) {
-	    this.grow(10);
+	    this.grow(growSize);
 	}
 	last++;
-	data[last] = i;
+	data[last] = item;
         
 	return true;
     }
     
-    public void add(int index, int i) {
+    public boolean add(int index, E e) {
         // Adds item i at given index, shifting everything down as needed.
         // Grows as needed.
 	if (last == data.length-1) {
 	    this.grow(growSize);
 	}
-	int prevVal = i;
-	for (int foo = index; foo < last+1; foo++) {
+	E prevVal = e;
+	for (int foo=index; foo<last+1; foo++) {
 	    E temp = data[foo];
 	    data[foo] = prevVal;
 	    prevVal = temp;
 	}
+        
+        return true;
     }
 
     public int size() {
@@ -55,47 +59,52 @@ public class OrderedSArray<E> {
             return data[index];
         }
         catch (ArrayIndexOutOfBoundsException a) {
-            System.out.println("Given index not within the SArray! " + a);
+            System.out.println("Given index not within the SuperArray! " + a);
         }
         catch (IndexOutOfBoundsException i) {
             System.out.println("??? " + i);
         }
-
-        return data[index];
+        
+        //return data[index];
     }
 
-    public E set(int index, int i) {
+    public E set(int index, E e) {
         // Sets the item at given index to given value.
         // Returns the old value.
         try {
             if (index > last) {
                 this.classyErrorL();
             }
-            return data[index];
+
+            E toReturn = data[index];
+            data[index] = e;
+            return toReturn;
         }
         catch (ArrayIndexOutOfBoundsException a) {
-            System.out.println("Given index not within the SArray! " + a);
+            System.out.println("Given index not within the SuperArray! " + a);
         }
         catch (IndexOutOfBoundsException i) {
             System.out.println("??? " + i);
         }
-
-	E toReturn = data[index];
-	data[index] = i;
-	return toReturn;
     }
 
     public E remove(int index) {
-        // Removes the item at given index. [See this.add().]
+        // Removes the item at given index. [See this.add()]
         // Returns the old value.
 	try {
             if (index > last) {
                 this.classyErrorL();
             }
+            
+            E toReturn = data[index];
+            for (int foo=index; foo<last; foo++) {
+                data[foo] = data[foo+1];
+            }
+            
             return data[index];
         }
         catch (ArrayIndexOutOfBoundsException a) {
-            System.out.println("Given index not within the SArray! " + a);
+            System.out.println("Given index not within the SuperArray! " + a);
         }
         catch (IndexOutOfBoundsException i) {
             System.out.println("??? " + i);
@@ -105,7 +114,7 @@ public class OrderedSArray<E> {
 	for (int foo = index; foo < last; foo++) {
 	    data[foo] = data[foo+1];
 	}
-	data[last] = 0; // WIPED
+	data[last] = null; // WIPED
 	last--;
 	return toReturn;
     }
@@ -136,7 +145,7 @@ public class OrderedSArray<E> {
     }
     */
     public void classyErrorL() {
-        System.out.println("Error! Given index does not point to initialized portion of SArray!!!1!!!111!");
+        System.out.println("Error! Given index does not point to initialized portion of SuperArray!!!1!!!111!");
         throw new ClassyError();
     }
 }
