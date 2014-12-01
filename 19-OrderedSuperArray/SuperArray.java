@@ -121,13 +121,9 @@ public class SuperArray<E> {
 
     public void grow(int bigger) {
 	// modifies empty space at the end of the array
-        data = (E[]) Array.newInstance(E, size);
-        data = (E[]) Array.newInstance(E, size);
-
-	
-	E[] temp  = (E[]) Array.newInstance(E, data.length);
+	E[] temp  = (E[]) Array.newInstance(Class<E>, data.length);
 	System.arraycopy(data, 0, temp, 0, data.length);
-	data = (E[]) Array.newInstance(E,  temp.length + bigger);
+	data = (E[]) Array.newInstance(Class<E>, temp.length + bigger);
 	System.arraycopy(temp, 0, data, 0, data.length);
     }
     /*
