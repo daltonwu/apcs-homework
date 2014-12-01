@@ -5,16 +5,17 @@ public class SuperArray<E> {
     private int last;
     private int growSize;
     
-    public SuperArray(Class<E> e, int size, int growSize) {
+    public SuperArray(int size, int growSize) {
         // Sets up the initial instance variables.
         //@SuppressWarnings("unchecked")
-        E[] data = (E[]) Array.newInstance(e, size);
+        data = (E[])new Object[size];
+        //E[] data = (E[]) Array.newInstance(e, size);
         this.growSize = growSize;
         last = 0;
     }
-    public SuperArray(Class<E> e) {
+    public SuperArray() {
         // Special case for the lazy person.
-	this(e, 10, 10);
+	this(10, 10);
     }
 
     public boolean add(E item) {
@@ -60,9 +61,11 @@ public class SuperArray<E> {
         }
         catch (ArrayIndexOutOfBoundsException a) {
             System.out.println("Given index not within the SuperArray! " + a);
+            return null;
         }
         catch (IndexOutOfBoundsException i) {
             System.out.println("??? " + i);
+            return null;
         }
         
         //return data[index];
@@ -82,9 +85,11 @@ public class SuperArray<E> {
         }
         catch (ArrayIndexOutOfBoundsException a) {
             System.out.println("Given index not within the SuperArray! " + a);
+            return null;
         }
         catch (IndexOutOfBoundsException i) {
             System.out.println("??? " + i);
+            return null;
         }
     }
 
@@ -100,30 +105,27 @@ public class SuperArray<E> {
             for (int foo=index; foo<last; foo++) {
                 data[foo] = data[foo+1];
             }
-            
-            return data[index];
+            data[last] = null; // WIPED
+            last--;
+            return toReturn;
         }
         catch (ArrayIndexOutOfBoundsException a) {
             System.out.println("Given index not within the SuperArray! " + a);
+            return null;
         }
         catch (IndexOutOfBoundsException i) {
             System.out.println("??? " + i);
+            return null;
         }
-        
-        E toReturn = data[index];
-	for (int foo = index; foo < last; foo++) {
-	    data[foo] = data[foo+1];
-	}
-	data[last] = null; // WIPED
-	last--;
-	return toReturn;
     }
 
     public void grow(int bigger) {
 	// modifies empty space at the end of the array
-	E[] temp  = (E[]) Array.newInstance(Class<E>, data.length);
+        E[] temp = (E[])new Object[data.length];
+	//E[] temp = (E[]) Array.newInstance(E, data.length);
 	System.arraycopy(data, 0, temp, 0, data.length);
-	data = (E[]) Array.newInstance(Class<E>, temp.length + bigger);
+        data = (E[])new Object[temp.length + bigger];
+	//data = (E[]) Array.newInstance(E, temp.length + bigger);
 	System.arraycopy(temp, 0, data, 0, data.length);
     }
     /*
@@ -140,8 +142,8 @@ public class SuperArray<E> {
 	}
     }
     */
-    public void classyErrorL() {
-        System.out.println("Error! Given index does not point to initialized portion of SuperArray!!!1!!!111!");
-        throw new ClassyError();
+    public void classyErrorL() {//throws ClassyErrorException {
+        //System.out.println("Error! Given index does not point to initialized portion of SuperArray!!!1!!!111!");
+        //throw new ClassyErrorException();
     }
 }
