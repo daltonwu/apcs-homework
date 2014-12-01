@@ -1,5 +1,9 @@
 import java.util.Arrays;
 
 public class Driver {
-    OrderedSArray<String> osa = new OrderedSArray<String>(10, 10);
+    public static void main(String[] args) {
+        SuperArray<String> osa = new SuperArray<String>(String, 10, 10);
+        osa.add("lawl");
+        System.out.println(osa.get(0));
+    }
 }

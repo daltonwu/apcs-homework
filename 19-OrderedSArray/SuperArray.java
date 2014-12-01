@@ -7,7 +7,7 @@ public class SuperArray<E> {
     
     public SuperArray(Class<E> e, int size, int growSize) {
         // Sets up the initial instance variables.
-        @SuppressWarnings("unchecked")
+        //@SuppressWarnings("unchecked")
         E[] data = (E[]) Array.newInstance(e, size);
         this.growSize = growSize;
         last = 0;
@@ -20,7 +20,7 @@ public class SuperArray<E> {
     public boolean add(E item) {
         // Adds an item to the end of the list, grows if needed.
         // Returns true.
-	if (last == data.length-1) {
+	if (last >= data.length-1) {
 	    this.grow(growSize);
 	}
 	last++;
@@ -32,7 +32,7 @@ public class SuperArray<E> {
     public boolean add(int index, E e) {
         // Adds item i at given index, shifting everything down as needed.
         // Grows as needed.
-	if (last == data.length-1) {
+	if (last >= data.length-1) {
 	    this.grow(growSize);
 	}
 	E prevVal = e;
@@ -121,13 +121,13 @@ public class SuperArray<E> {
 
     public void grow(int bigger) {
 	// modifies empty space at the end of the array
-        data = (E[]) Array.newInstance(c, size);
-        data = (E[]) Array.newInstance(c, size);
+        data = (E[]) Array.newInstance(E, size);
+        data = (E[]) Array.newInstance(E, size);
 
 	
-	E[] temp  = new E[data.length];
+	E[] temp  = (E[]) Array.newInstance(E, data.length);
 	System.arraycopy(data, 0, temp, 0, data.length);
-	data = new E[temp.length + bigger];
+	data = (E[]) Array.newInstance(E,  temp.length + bigger);
 	System.arraycopy(temp, 0, data, 0, data.length);
     }
     /*
