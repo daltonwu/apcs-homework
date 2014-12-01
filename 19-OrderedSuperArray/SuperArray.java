@@ -11,7 +11,7 @@ public class SuperArray<E> {
         data = (E[])new Object[size];
         //E[] data = (E[]) Array.newInstance(e, size);
         this.growSize = growSize;
-        last = 0;
+        last = -1;
     }
     public SuperArray() {
         // Special case for the lazy person.
@@ -25,30 +25,32 @@ public class SuperArray<E> {
 	    this.grow(growSize);
 	}
 	last++;
-	data[last] = item;
-        
+
+	data[last] = (E)item;
 	return true;
     }
     
-    public boolean add(int index, E e) {
-        // Adds item i at given index, shifting everything down as needed.
+    public boolean add(int index, E item) {
+        // Adds item at given index, shifting everything down as needed.
         // Grows as needed.
 	if (last >= data.length-1) {
 	    this.grow(growSize);
 	}
-	E prevVal = e;
-	for (int foo=index; foo<last+1; foo++) {
+	E prevVal = item;
+        System.out.println("In add(): prevVal = " + prevVal);
+	for (int foo=index; foo<=last+2; foo++) {
 	    E temp = data[foo];
 	    data[foo] = prevVal;
+            System.out.println("In add() for loop: prevVal = " + prevVal);
 	    prevVal = temp;
 	}
-        
+        System.out.println("In add(): data[index] = " + data[index]);
         return true;
     }
 
     public int size() {
         // Returns the number of items in the list (not the array size).
-	return last;
+	return last+1;
     }
 
     public E get(int index) {
