@@ -25,7 +25,6 @@ public class SuperArray<E> {
 	    this.grow(growSize);
 	}
 	last++;
-
 	data[last] = (E)item;
 	return true;
     }
@@ -33,18 +32,20 @@ public class SuperArray<E> {
     public boolean add(int index, E item) {
         // Adds item at given index, shifting everything down as needed.
         // Grows as needed.
+        // Also, NO SWISS CHEESE!
+        if (index > last+1) {
+            return false;
+        }
 	if (last >= data.length-1) {
 	    this.grow(growSize);
 	}
+        last++;
 	E prevVal = item;
-        System.out.println("In add(): prevVal = " + prevVal);
-	for (int foo=index; foo<=last+2; foo++) {
+	for (int foo=index; foo<=last; foo++) {
 	    E temp = data[foo];
 	    data[foo] = prevVal;
-            System.out.println("In add() for loop: prevVal = " + prevVal);
 	    prevVal = temp;
 	}
-        System.out.println("In add(): data[index] = " + data[index]);
         return true;
     }
 
