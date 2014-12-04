@@ -7,7 +7,8 @@ public class SortedSuperArray<E extends Comparable<E>> extends SuperArray {
     }
 
     public void insertionSort() {
-            
+        for(int i=0; i<super.size(); i++) {
+        }
     }
 
 }
