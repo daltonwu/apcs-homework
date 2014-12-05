@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 
 public class SuperArray<E> {
     private E[] data;
-    private int last;
+    private int last; //last index!
     private int growSize;
     
     public SuperArray(int size, int growSize) {
@@ -17,7 +17,16 @@ public class SuperArray<E> {
         // Special case for the lazy person.
 	this(10, 10);
     }
-
+    
+    public String toString() {
+        String s = "[";
+        for(int i=0; i<=last; i++) {
+            s += data[i];
+            if (i != last) s += ", ";
+        }
+        s += "]";
+        return s;
+    }
     public boolean add(E item) {
         // Adds an item to the end of the list, grows if needed.
         // Returns true.

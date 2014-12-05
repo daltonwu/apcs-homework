@@ -15,18 +15,29 @@ public class Driver {
         }
         while (f.hasNext()) {
             String s = f.nextLine();
-            System.out.println(osa.add(s));
-            System.out.println(ssa.add(s));
+            /*System.out.println(osa.add(s));
+            System.out.println(ssa.add(s));*/
+            osa.add(s);
+            ssa.add(s);
         }
         
-        
-        System.out.println("\n\n");
+        System.out.println("\n------BEGIN PROGRAM-----------");
+        System.out.println(  "--------OrderedSuperArray-----");
         for (int i=0; i<10; i++) {
             System.out.println(osa.get(i));
         }
+
+        System.out.println(  "\n-----------------");
+
+        for (int i=0; i<10; i++) {
+            System.out.println(ssa.get(i));
+        }
+        
+        ssa.chopItUp();
         System.out.println("\n");
         for (int i=0; i<10; i++) {
             System.out.println(ssa.get(i));
         }
+        System.out.println("\n");
     }
 }
