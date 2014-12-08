@@ -33,5 +33,11 @@ public class Driver {
         for (int i=0; i<10; i++) {
             System.out.println(ssa.get(i));
         }
+        System.out.println("\n");
+        ssa.chopItUp();
+        ssa.BS2MUCH();
+        for (int i=0; i<10; i++) {
+            System.out.println(ssa.get(i));
+        }
     }
 }

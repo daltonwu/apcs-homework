@@ -67,4 +67,17 @@ public class SortedSuperArray<E extends Comparable<E>> extends SuperArray {
             }
         }
     }
+    public void BS2MUCH() {
+        // huh
+        for (int i=0; i < super.size()-1; i++) {
+            for (int g=i; g < super.size()-1; g++) {
+                E one = (E) super.get(g);
+                E two = (E) super.get(g+1);
+                if (one.compareTo(two) > 0) {
+                    super.set(i, two);
+                    super.set(i+1, one);
+                }
+            }
+        }
+    }
 }
