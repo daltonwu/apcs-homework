@@ -7,7 +7,6 @@ apcs-hw
 <h2>To be done:</h2>
  -- Wordsearch (man, I'm way behind)
 
-<hr>
 
 <h2>Important:</h2>
  -- SuperArray versions:
