@@ -7,7 +7,7 @@ public class OrderedSuperArray<E extends Comparable<E>> extends SuperArray {
         super(10, 10);
     }
 
-    public boolean add(E item) {
+    public boolean addOrdered(E item) {
         try {
             int index = 0;
             while (index < super.size() && item.compareTo((E)super.get(index)) > 0) {

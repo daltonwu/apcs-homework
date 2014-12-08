@@ -17,7 +17,7 @@ public class Driver {
             String s = f.nextLine();
             /*System.out.println(osa.add(s));
             System.out.println(ssa.add(s));*/
-            osa.add(s);
+            osa.addOrdered(s);
             ssa.add(s);
         }
         
@@ -27,17 +27,11 @@ public class Driver {
             System.out.println(osa.get(i));
         }
 
-        System.out.println(  "\n-----------------");
+        System.out.println("\n--------SortedSuperArray------");
 
+        ssa.BS();
         for (int i=0; i<10; i++) {
             System.out.println(ssa.get(i));
         }
-        
-        ssa.chopItUp();
-        System.out.println("\n");
-        for (int i=0; i<10; i++) {
-            System.out.println(ssa.get(i));
-        }
-        System.out.println("\n");
     }
 }

@@ -1,6 +1,6 @@
 import java.lang.reflect.Array;
 
-public class SuperArray<E> {
+public class SuperArray<E extends Comparable<E>> {
     private E[] data;
     private int last; //last index!
     private int growSize;
@@ -8,7 +8,7 @@ public class SuperArray<E> {
     public SuperArray(int size, int growSize) {
         // Sets up the initial instance variables.
         //@SuppressWarnings("unchecked")
-        data = (E[])new Object[size];
+        data = (E[])new Comparable[size];
         //E[] data = (E[]) Array.newInstance(e, size);
         this.growSize = growSize;
         last = -1;
