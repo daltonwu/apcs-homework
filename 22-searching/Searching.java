@@ -51,10 +51,10 @@ public class Searching {
             System.out.println("In binary while, low = " + low + ", high = " + high + ", toCheck = " + toCheck);
             if(item.equals(a[toCheck])) return item;
             if(item.compareTo(a[toCheck]) > 0) {
-                low += high - toCheck;
+                low = toCheck;
             }
             else {
-                high -= high - toCheck;
+                high = toCheck;
             }
         }
         return null;
