@@ -10,7 +10,6 @@ public class Driver {
         System.out.println(search.toString());
         search.sort();
         System.out.println(search.toString());
-        System.out.println(search.search(2, "l"));
-        System.out.println(search.search(25, "b"));
+        System.out.println(search.search(40, "b"));
     }
 }

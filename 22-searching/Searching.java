@@ -44,17 +44,16 @@ public class Searching {
         // If item is there, return the item.
         // If not, return null.
         int low = 0;
-        int high = a.length;
-        int toCheck;
-        while(low != high) {
-            toCheck = (low + high) / 2;
+        int high = a.length-1;
+        while(high >= low) {
+            int toCheck = (low + high) / 2;
             System.out.println("In binary while, low = " + low + ", high = " + high + ", toCheck = " + toCheck);
             if(item.equals(a[toCheck])) return item;
             if(item.compareTo(a[toCheck]) > 0) {
-                low = toCheck;
+                low = toCheck + 1;
             }
             else {
-                high = toCheck;
+                high = toCheck - 1;
             }
         }
         return null;
@@ -63,9 +62,20 @@ public class Searching {
         // Recursive implementation of the binary search.
         // Again, if item is there, return the item.
         // If not, return null.
-        return rBinarySearch(item, 0, a.length);
+        return rBinarySearch(item, 0, a.length-1);
     }
     public Comparable rBinarySearch(Comparable item, int low, int high) {
-        return null;
+        System.out.println("In recursive binary, low = " + low + ", high = " + high + ", toCheck = " + (low + high) / 2);
+        if(high < low) {
+            return null;
+        }
+        int toCheck = (low + high) / 2;
+        if(item.equals(a[toCheck])) {
+            return item;
+        }
+        if(item.compareTo(a[toCheck]) > 0) {
+            return rBinarySearch(item, toCheck + 1, high);
+        }
+        return rBinarySearch(item, low, toCheck - 1);
     }
 }
